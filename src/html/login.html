@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | CMAC Huancayo</title>
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="icon" type="image/png" href="/img/Logo.jpg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="bg-split">
+        <div class="bg-left">
+            <div class="bg-left-content">
+                <div class="bg-left-logo">
+                    <img src="/img/caja-huancayo-logo-png_seeklogo-437667.png" alt="CMAC Huancayo" />
+                </div>
+                <h1 class="bg-left-title">Banca Digital</h1>
+                <p class="bg-left-subtitle">Seguridad y confianza para tus finanzas</p>
+                <div class="bg-left-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Transferencias seguras</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Créditos al instante</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Pagos de servicios</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Soporte 24/7</span>
+                    </div>
+                </div>
+                <div class="bg-left-footer">
+                    <span>© 2026 CMAC Huancayo</span>
+                </div>
+            </div>
+        </div>
+        <div class="bg-right">
+            <video autoplay muted loop playsinline id="bg-video">
+                <source src="/videos/lima.mp4" type="video/mp4" />
+            </video>
+            <div class="bg-right-overlay"></div>
+        </div>
+    </div>
+
+    <main class="login-wrapper">
+        <div class="login-card glass-animated">
+
+            <div class="card-preview">
+                <div class="card-image-half">
+                    <img src="/img/zinogre.jpg" alt="Zinogre" />
+                </div>
+                <div class="card-red-half">
+                    <div class="card-chip"></div>
+                    <div class="card-number">2043 8135 1763 3189</div>
+                    <div class="card-expiry">11/19</div>
+                    <div class="card-brand">VISA</div>
+                </div>
+            </div>
+
+            <div class="login-header">
+                <div class="login-brand-mobile">
+                    <img src="/img/caja-huancayo-logo-png_seeklogo-437667.png" alt="CMAC Huancayo" class="logo-mobile" />
+                </div>
+                <h2>Iniciar sesión</h2>
+                <p class="subtitle">Ingresa tus credenciales bancarias</p>
+            </div>
+
+            {% if error %}
+            <div class="error-message-global">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <form id="loginForm" action="/login" method="post" novalidate>
+
+                <div class="input-group">
+                    <label>DNI</label>
+                    <input type="text" name="dni" id="dni" placeholder="8 dígitos" maxlength="8" minlength="8" inputmode="numeric" required />
+                    <div class="error-message" id="dniError"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Número de tarjeta</label>
+                    <input type="text" name="tarjeta" id="tarjeta" placeholder="16 dígitos" maxlength="16" minlength="16" inputmode="numeric" required />
+                    <div class="error-message" id="tarjetaError"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Contraseña</label>
+                    <input type="password" name="password" id="password" placeholder="••••••••" required />
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+
+                <div class="input-group pin-group">
+                    <label>Código PIN (4 dígitos)</label>
+                    <div class="pin-boxes" id="pinBoxes">
+                        <input type="password" class="pin-input" maxlength="1" inputmode="numeric" required />
+                        <input type="password" class="pin-input" maxlength="1" inputmode="numeric" required />
+                        <input type="password" class="pin-input" maxlength="1" inputmode="numeric" required />
+                        <input type="password" class="pin-input" maxlength="1" inputmode="numeric" required />
+                    </div>
+                    <input type="hidden" name="codigo_seguridad" id="hiddenPin" />
+                    <div class="error-message" id="pinError"></div>
+                </div>
+
+                <button type="submit" id="loginBtn">INGRESAR</button>
+
+            </form>
+
+            <div class="register-link-wrapper">
+                <a href="/register" id="registerLink">¿No tienes cuenta? <strong>Crear cuenta</strong></a>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="loading-screen" id="loadingScreen" style="display: none;">
+        <div class="loader"></div>
+        <p>Cargando...</p>
+    </div>
+
+    <script src="/js/login.js"></script>
+</body>
+</html>

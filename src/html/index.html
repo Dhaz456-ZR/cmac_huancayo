@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banca Digital | CMAC Huancayo</title>
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="icon" type="image/png" href="/img/Logo.jpg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- ========== SIDEBAR ========== -->
+    <aside class="sidebar glass">
+        <div class="sidebar-brand">
+            <img src="/img/caja-huancayo-logo-png_seeklogo-437667.png" alt="CMAC Huancayo" class="logo" />
+            <span class="brand-text">Banca Digital</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="/index" class="nav-item active">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+                Inicio
+            </a>
+            <a href="/mis-cuentas" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                    <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+                </svg>
+                Mis cuentas
+            </a>
+            <a href="/transferencias" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 19l7-7-7-7M5 12h14"/>
+                </svg>
+                Transferencias
+            </a>
+            <a href="/creditos" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v20M17 7l-5-5-5 5M7 17l5 5 5-5"/>
+                </svg>
+                Créditos
+            </a>
+            <a href="/pagos" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                </svg>
+                Pagos
+            </a>
+            <a href="/perfil" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                Perfil
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="/logout" class="nav-item logout">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+                    <polyline points="16 17 21 12 16 7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                Cerrar sesión
+            </a>
+        </div>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="main-content">
+
+        <!-- ===== HEADER ===== -->
+        <header class="header">
+            <div class="header-left">
+                <h1>Panel principal</h1>
+                <p class="header-subtitle">Gestiona tus cuentas, pagos, créditos y transferencias desde tu banca digital.</p>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span class="user-name">{{ nombre }}</span>
+                    <span class="user-status">Verificado</span>
+                </div>
+                <div class="user-avatar">
+                    <span>{{ nombre[0] }}</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ===== WELCOME BANNER ===== -->
+        <div class="welcome-banner glass">
+            <div class="welcome-text">
+                <h2>¡Bienvenido, {{ nombre }}!</h2>
+                <p>Gestiona tus cuentas, pagos, créditos y transferencias desde tu banca digital.</p>
+            </div>
+            <div class="welcome-badge">
+                <span class="badge-verified">✓ Verificado</span>
+            </div>
+        </div>
+
+        <!-- ===== CARDS ROW ===== -->
+        <div class="cards-row">
+
+            <!-- Tarjeta de cuenta -->
+            <div class="card account-card glass">
+                <div class="card-header">
+                    <span class="card-title">Cuenta de Ahorros</span>
+                    <span class="card-badge">Principal</span>
+                </div>
+                <div class="card-balance">
+                    <span class="currency">S/</span>
+                    <span class="amount">{{ cuenta.saldo if cuenta else '0.00' }}</span>
+                </div>
+                <div class="card-number">
+                    **** **** **** {{ cuenta.numero_cuenta[-4:] if cuenta else '1111' }}
+                </div>
+                <button class="btn-toggle" id="toggleCard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    Mostrar / Ocultar tarjeta
+                </button>
+            </div>
+
+            <!-- Crédito activo -->
+            <div class="card credit-card glass">
+                <div class="card-header">
+                    <span class="card-title">Crédito activo</span>
+                    <span class="card-badge">{{ credito.estado if credito else 'Al día' }}</span>
+                </div>
+                <div class="credit-info">
+                    <span class="credit-type">{{ credito.tipo_credito if credito else 'Préstamo Personal' }}</span>
+                    <div class="credit-amount">
+                        <span class="currency">S/</span>
+                        <span class="amount">{{ credito.monto_total if credito else '0.00' }}</span>
+                    </div>
+                </div>
+                <div class="credit-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: {% if credito and credito.cuotas_totales %}{{ (credito.cuotas_pagadas / credito.cuotas_totales * 100) }}{% else %}0{% endif %}%;"></div>
+                    </div>
+                    <span class="progress-text">{{ credito.cuotas_pagadas if credito else 0 }} / {{ credito.cuotas_totales if credito else 12 }} cuotas pagadas</span>
+                </div>
+            </div>
+
+            <!-- Estado de cuenta -->
+            <div class="card status-card glass">
+                <div class="card-header">
+                    <span class="card-title">Estado</span>
+                </div>
+                <div class="status-info">
+                    <div class="status-item">
+                        <span class="status-label">Cuenta</span>
+                        <span class="status-value active">Activa</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Verificación</span>
+                        <span class="status-value verified">Verificado</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Seguridad</span>
+                        <span class="status-value secure">Protegida</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ===== QUICK ACTIONS ===== -->
+        <div class="quick-actions">
+            <h3>Acciones rápidas</h3>
+            <div class="actions-grid">
+                <a href="/transferencias" class="action-item glass">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 19l7-7-7-7M5 12h14"/>
+                    </svg>
+                    <span>Transferir</span>
+                </a>
+                <a href="/pagos" class="action-item glass">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                    </svg>
+                    <span>Pagar servicios</span>
+                </a>
+                <a href="/creditos" class="action-item glass">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2v20M17 7l-5-5-5 5M7 17l5 5 5-5"/>
+                    </svg>
+                    <span>Solicitar crédito</span>
+                </a>
+                <a href="/mis-cuentas" class="action-item glass">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                        <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+                    </svg>
+                    <span>Estado de cuenta</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ===== ÚLTIMOS MOVIMIENTOS ===== -->
+        <div class="movements-section">
+            <div class="section-header">
+                <h3>Últimos movimientos</h3>
+                <a href="/mis-cuentas" class="view-all">Ver todos →</a>
+            </div>
+            <div class="movements-list glass">
+                {% if movimientos %}
+                    {% for movimiento in movimientos %}
+                    <div class="movement-item">
+                        <div class="movement-icon {% if movimiento.tipo == 'entrada' %}entry{% else %}exit{% endif %}">
+                            {% if movimiento.tipo == 'entrada' %}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                                <polyline points="17 6 23 6 23 12"/>
+                            </svg>
+                            {% else %}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>
+                                <polyline points="17 18 23 18 23 12"/>
+                            </svg>
+                            {% endif %}
+                        </div>
+                        <div class="movement-info">
+                            <span class="movement-desc">{{ movimiento.descripcion }}</span>
+                            <span class="movement-date">{{ movimiento.fecha.strftime('%d/%m/%Y %H:%M') if movimiento.fecha else '' }}</span>
+                        </div>
+                        <div class="movement-amount {% if movimiento.tipo == 'entrada' %}positive{% else %}negative{% endif %}">
+                            {% if movimiento.tipo == 'entrada' %}+{% else %}-{% endif %}S/ {{ movimiento.monto }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="movement-empty">
+                        <p>No hay movimientos recientes</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- ===== SECURITY BANNER ===== -->
+        <div class="security-banner glass">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <polyline points="9 12 11 14 15 10"/>
+            </svg>
+            <div class="security-text">
+                <strong>Tu sesión está protegida</strong>
+                <span>Tu cuenta se encuentra verificada y segura.</span>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="/js/index.js"></script>
+</body>
+</html>

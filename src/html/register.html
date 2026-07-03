@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro | CMAC Huancayo</title>
+    <link rel="stylesheet" href="/css/register.css" />
+    <link rel="icon" type="image/png" href="/img/Logo.jpg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="bg-split">
+        <div class="bg-left">
+            <div class="bg-left-content">
+                <div class="bg-left-logo">
+                    <img src="/img/caja-huancayo-logo-png_seeklogo-437667.png" alt="CMAC Huancayo" />
+                </div>
+                <h1 class="bg-left-title">Únete a la banca del futuro</h1>
+                <p class="bg-left-subtitle">Abre tu cuenta en minutos y disfruta de todos los beneficios</p>
+                <div class="bg-left-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Sin costo de apertura</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Tarjeta digital</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Transferencias ilimitadas</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Banca móvil 24/7</span>
+                    </div>
+                </div>
+                <div class="bg-left-footer">
+                    <span>© 2026 CMAC Huancayo</span>
+                </div>
+            </div>
+        </div>
+        <div class="bg-right">
+            <video autoplay muted loop playsinline id="bg-video">
+                <source src="/videos/lima.mp4" type="video/mp4" />
+            </video>
+            <div class="bg-right-overlay"></div>
+        </div>
+    </div>
+
+    <main class="register-wrapper">
+        <div class="register-card glass-animated">
+
+            <div class="card-preview">
+                <div class="card-image-half">
+                    <img src="/img/zinogre.jpg" alt="Zinogre" />
+                </div>
+                <div class="card-red-half">
+                    <div class="card-chip"></div>
+                    <div class="card-number">2043 8135 1763 3189</div>
+                    <div class="card-expiry">11/19</div>
+                    <div class="card-brand">VISA</div>
+                </div>
+            </div>
+
+            <div class="register-header">
+                <div class="register-brand-mobile">
+                    <img src="/img/caja-huancayo-logo-png_seeklogo-437667.png" alt="CMAC Huancayo" class="logo-mobile" />
+                </div>
+                <h2>Crear cuenta</h2>
+                <p class="subtitle">Completa todos los campos para registrarte</p>
+            </div>
+
+            {% if error %}
+            <div class="error-message-global">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <form id="registerForm" action="/register" method="post" novalidate>
+
+                <div class="input-group">
+                    <label>Nombre completo</label>
+                    <input type="text" name="nombre" id="nombre" placeholder="Ej: Juan Pérez" required />
+                    <div class="error-message" id="nombreError"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>DNI</label>
+                    <input type="text" name="dni" id="dni" placeholder="8 dígitos" maxlength="8" minlength="8" inputmode="numeric" required />
+                    <div class="error-message" id="dniError"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Número de tarjeta</label>
+                    <input type="text" name="tarjeta" id="tarjeta" placeholder="16 dígitos" maxlength="16" minlength="16" inputmode="numeric" required />
+                    <div class="error-message" id="tarjetaError"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Contraseña</label>
+                    <input type="password" name="password" id="password" placeholder="Mínimo 6 caracteres" required />
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Confirmar contraseña</label>
+                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Repite tu contraseña" required />
+                    <div class="error-message" id="confirmPasswordError"></div>
+                </div>
+
+                <div class="input-group pin-group">
+                    <label>PIN de seguridad (4 dígitos)</label>
+                    <div class="pin-boxes" id="pinBoxes">
+                        <input type="password" class="pin-input" name="pin1" maxlength="1" inputmode="numeric" required />
+                        <input type="password" class="pin-input" name="pin2" maxlength="1" inputmode="numeric" required />
+                        <input type="password" class="pin-input" name="pin3" maxlength="1" inputmode="numeric" required />
+                        <input type="password" class="pin-input" name="pin4" maxlength="1" inputmode="numeric" required />
+                    </div>
+                    <div class="error-message" id="pinError"></div>
+                </div>
+
+                <div class="input-group pin-group">
+                    <label>Confirmar PIN</label>
+                    <div class="pin-boxes" id="confirmPinBoxes">
+                        <input type="password" class="pin-input confirm-pin" maxlength="1" inputmode="numeric" required />
+                        <input type="password" class="pin-input confirm-pin" maxlength="1" inputmode="numeric" required />
+                        <input type="password" class="pin-input confirm-pin" maxlength="1" inputmode="numeric" required />
+                        <input type="password" class="pin-input confirm-pin" maxlength="1" inputmode="numeric" required />
+                    </div>
+                    <div class="error-message" id="confirmPinError"></div>
+                </div>
+
+                <button type="submit" id="registerBtn">CREAR CUENTA</button>
+
+            </form>
+
+            <div class="login-link-wrapper">
+                <a href="/" id="loginLink">¿Ya tienes cuenta? <strong>Iniciar sesión</strong></a>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="loading-screen" id="loadingScreen" style="display: none;">
+        <div class="loader"></div>
+        <p>Creando cuenta...</p>
+    </div>
+
+    <script src="/js/register.js"></script>
+</body>
+</html>

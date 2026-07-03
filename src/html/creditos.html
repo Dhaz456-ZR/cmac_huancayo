@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Créditos | CMAC Huancayo</title>
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="icon" type="image/png" href="/img/Logo.jpg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- ========== SIDEBAR ========== -->
+    <aside class="sidebar glass">
+        <div class="sidebar-brand">
+            <img src="/img/caja-huancayo-logo-png_seeklogo-437667.png" alt="CMAC Huancayo" class="logo" />
+            <span class="brand-text">Banca Digital</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="/index" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+                Inicio
+            </a>
+            <a href="/mis-cuentas" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                    <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+                </svg>
+                Mis cuentas
+            </a>
+            <a href="/transferencias" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 19l7-7-7-7M5 12h14"/>
+                </svg>
+                Transferencias
+            </a>
+            <a href="/creditos" class="nav-item active">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v20M17 7l-5-5-5 5M7 17l5 5 5-5"/>
+                </svg>
+                Créditos
+            </a>
+            <a href="/pagos" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                </svg>
+                Pagos
+            </a>
+            <a href="/perfil" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                Perfil
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="/logout" class="nav-item logout">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+                    <polyline points="16 17 21 12 16 7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                Cerrar sesión
+            </a>
+        </div>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="main-content">
+
+        <header class="header">
+            <div class="header-left">
+                <h1>Créditos</h1>
+                <p class="header-subtitle">Gestiona tus créditos y solicita nuevos préstamos</p>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span class="user-name">{{ nombre }}</span>
+                    <span class="user-status">Verificado</span>
+                </div>
+                <div class="user-avatar">
+                    <span>{{ nombre[0] }}</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ===== CRÉDITO ACTIVO ===== -->
+        {% if credito %}
+        <div class="card glass" style="margin-bottom:32px;border-left:4px solid #c40018;">
+            <div class="card-header">
+                <span class="card-title">Crédito activo</span>
+                <span class="card-badge">{{ credito.estado }}</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:8px;">
+                <div>
+                    <span style="color:rgba(255,255,255,0.4);font-size:13px;">Tipo</span>
+                    <p style="color:#ffffff;font-weight:600;font-size:16px;">{{ credito.tipo_credito }}</p>
+                </div>
+                <div>
+                    <span style="color:rgba(255,255,255,0.4);font-size:13px;">Monto total</span>
+                    <p style="color:#ffffff;font-weight:600;font-size:16px;">S/ {{ credito.monto_total }}</p>
+                </div>
+                <div>
+                    <span style="color:rgba(255,255,255,0.4);font-size:13px;">Cuota mensual</span>
+                    <p style="color:#ffffff;font-weight:600;font-size:16px;">S/ {{ credito.cuota_mensual }}</p>
+                </div>
+                <div>
+                    <span style="color:rgba(255,255,255,0.4);font-size:13px;">Cuotas pagadas</span>
+                    <p style="color:#4ade80;font-weight:600;font-size:16px;">{{ credito.cuotas_pagadas }} / {{ credito.cuotas_totales }}</p>
+                </div>
+                <div style="grid-column: span 2;">
+                    <span style="color:rgba(255,255,255,0.4);font-size:13px;">Progreso</span>
+                    <div class="progress-bar" style="margin-top:8px;">
+                        <div class="progress-fill" style="width: {{ (credito.cuotas_pagadas / credito.cuotas_totales * 100) if credito and credito.cuotas_totales else 0 }}%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="welcome-banner glass" style="margin-bottom:28px;border-left:4px solid #fbbf24;">
+            <div class="welcome-text">
+                <h2>No tienes créditos activos</h2>
+                <p>Solicita un crédito y obtén financiamiento al instante</p>
+            </div>
+            <div class="welcome-badge">
+                <span class="badge-verified" style="background:rgba(251,191,36,0.15);color:#fbbf24;border-color:rgba(251,191,36,0.2);">✓ Disponible</span>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- ===== SOLICITAR CRÉDITO ===== -->
+        <div class="card glass" style="margin-bottom:32px;">
+            <h3 style="font-size:18px;font-weight:600;color:#ffffff;margin-bottom:20px;">Solicitar nuevo crédito</h3>
+            
+            {% if error %}
+            <div style="background:rgba(255,0,0,0.1);border:1px solid #c40018;border-radius:12px;padding:12px 16px;margin-bottom:20px;color:#ff6b7a;text-align:center;">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <form action="/creditos" method="post">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Tipo de crédito</label>
+                        <select name="tipo_credito" required style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;color:#ffffff;font-size:15px;outline:none;">
+                            <option value="Préstamo Personal" style="background:#1a1a1a;">Préstamo Personal</option>
+                            <option value="Préstamo Vehicular" style="background:#1a1a1a;">Préstamo Vehicular</option>
+                            <option value="Préstamo Hipotecario" style="background:#1a1a1a;">Préstamo Hipotecario</option>
+                            <option value="Crédito Educativo" style="background:#1a1a1a;">Crédito Educativo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Monto total (S/)</label>
+                        <input type="number" name="monto_total" step="0.01" min="100" placeholder="1000.00" required />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Número de cuotas</label>
+                        <select name="cuotas_totales" required style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;color:#ffffff;font-size:15px;outline:none;">
+                            <option value="6" style="background:#1a1a1a;">6 meses</option>
+                            <option value="12" style="background:#1a1a1a;" selected>12 meses</option>
+                            <option value="18" style="background:#1a1a1a;">18 meses</option>
+                            <option value="24" style="background:#1a1a1a;">24 meses</option>
+                            <option value="36" style="background:#1a1a1a;">36 meses</option>
+                            <option value="48" style="background:#1a1a1a;">48 meses</option>
+                            <option value="60" style="background:#1a1a1a;">60 meses</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Cuota mensual estimada (S/)</label>
+                        <input type="number" name="cuota_mensual" step="0.01" min="10" placeholder="420.00" required />
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Solicitar crédito</button>
+            </form>
+        </div>
+
+        <!-- ===== HISTORIAL DE CRÉDITOS ===== -->
+        {% if creditos %}
+        <div class="movements-section">
+            <div class="section-header">
+                <h3>Historial de créditos</h3>
+                <span class="view-all">{{ creditos|length }} créditos</span>
+            </div>
+            <div class="movements-list glass">
+                {% for c in creditos %}
+                <div class="movement-item">
+                    <div class="movement-icon entry">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M17 7l-5-5-5 5M7 17l5 5 5-5"/>
+                        </svg>
+                    </div>
+                    <div class="movement-info">
+                        <span class="movement-desc">{{ c.tipo_credito }}</span>
+                        <span class="movement-date">{{ c.fecha_creacion.strftime('%d/%m/%Y') if c.fecha_creacion else '' }} • {{ c.estado }}</span>
+                    </div>
+                    <div class="movement-amount positive">
+                        S/ {{ c.monto_total }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+    </main>
+
+    <style>
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            color: rgba(255,255,255,0.6);
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.06);
+            border: 1.5px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.25s ease;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #c40018;
+            background: rgba(255,255,255,0.10);
+            box-shadow: 0 0 0 4px rgba(196,0,24,0.15);
+        }
+        .form-group input::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+        .form-group select option {
+            background: #1a1a1a;
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(145deg, #c40018, #a00012);
+            border: none;
+            border-radius: 16px;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 4px;
+        }
+        .btn-primary:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 24px rgba(196,0,24,0.3);
+        }
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script src="/js/index.js"></script>
+</body>
+</html>
